@@ -2,3 +2,5 @@
 bash/zsh shell scripts for setting up new linux installs
 
 Some scripts will require editing
+
+# this change is a git commit test
