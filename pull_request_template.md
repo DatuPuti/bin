@@ -2,6 +2,12 @@
 
 ## Issues addressed
 
+(A bullet point list  of issues fixed by this pull request.)
+
+## Changes made
+
+( A bullet point list of changes you made to address this issues)
+
 ## Type of change
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
