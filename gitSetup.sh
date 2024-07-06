@@ -9,6 +9,7 @@ git init
 git add .
 git commit -m "first commit"
 git branch -M main
+## edit this line for the correct repository name
 git remote add origin https://github.com/DatuPuti/bin.git
 git push -u origin main
 
