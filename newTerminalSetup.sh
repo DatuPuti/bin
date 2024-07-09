@@ -6,6 +6,7 @@
 # clone gitCmd 
 cd ~/bin
 git clone https://github.com/DatuPuti/gitCmd.git
+export PATH=$PATH:~/bin/gitCmd
 
 # install homebrew
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
@@ -43,8 +44,21 @@ sudo apt bat -y
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
+# install/remove universal-ctags
+# sudo apt remove universal-ctags
+# sudo apt install universal-ctags
+# install/remove exuberant-ctags
+sudo apt remove exuberant-ctags
+sudo apt install exuberant-ctags
+
 # clone the configs from github
 cd ~
+mkdir dotfileBackup
+cp -Rv ~/.config/nvm dotfileBackup
+cp .bashrc dotfileBackup
+cp .p10k.zsh dotfileBackup
+cp .tmux.conf dotfileBackup
+cp .zshrc dotfileBackup
 git clone https://github.com/DatuPuti/.dotfiles.git
 cd .dotfiles
 stow --target=/home/tborland .
@@ -55,3 +69,4 @@ cd ~
 sudo apt install zsh -y
 chsh -s /bin/zsh
 
+echo "export PATH=$PATH:~/bin:/opt/nvim-linux64/bin:~/bin/gitCmd" >> ~/.zshrc
