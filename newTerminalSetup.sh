@@ -3,17 +3,23 @@
 # setup new linux install
 # git clone https://github.com/DatuPuti/bin.git
 #
-# clone gitCmd 
+echo *****************************************************************
+echo * clone gitCmd 
+echo *****************************************************************
 cd ~/bin
 git clone https://github.com/DatuPuti/gitCmd.git
 export PATH=$PATH:~/bin/gitCmd
 
+echo *****************************************************************
 # install homebrew
+echo *****************************************************************
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 
-# install neovim
+echo *****************************************************************
+echo * install neovim
+echo *****************************************************************
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
@@ -21,20 +27,28 @@ sudo tar -C /opt -xzf nvim-linux64.tar.gz
 # if using the .dotfiles repository then the .zshrc will have the path set
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
-# get desired nerd fonts - install manually
+echo *****************************************************************
+echo * get desired nerd fonts - install manually
+echo *****************************************************************
 cd ~/Downloads
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
 
-# install oh-my-zsh and power10k
+echo *****************************************************************
+echo * install oh-my-zsh and power10k
+echo *****************************************************************
 cd ~
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-# install colorls using ruby gem
+echo *****************************************************************
+echo * install colorls using ruby gem
+echo *****************************************************************
 gem install colorls
 
-# install commandline tools 
+echo *****************************************************************
+echo * install commandline tools 
+echo *****************************************************************
 sudo apt install stow -y
 brew install thefuck
 sudo apt install zoxide -y
@@ -44,14 +58,18 @@ sudo apt bat -y
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
-# install/remove universal-ctags
-# sudo apt remove universal-ctags
-# sudo apt install universal-ctags
-# install/remove exuberant-ctags
+echo *****************************************************************
+echo * install/remove universal-ctags
+echo * sudo apt remove universal-ctags
+echo * sudo apt install universal-ctags
+echo * install/remove exuberant-ctags
+echo *****************************************************************
 sudo apt remove exuberant-ctags
 sudo apt install exuberant-ctags
 
-# clone the configs from github
+echo *****************************************************************
+echo * clone the configs from github
+echo *****************************************************************
 cd ~
 mkdir dotfileBackup
 cp -Rv ~/.config/nvm dotfileBackup
@@ -63,10 +81,15 @@ git clone https://github.com/DatuPuti/.dotfiles.git
 cd .dotfiles
 stow --target=/home/tborland .
 
-# last thing to do is source the .zshrc to get things going
-# make sure we are using zsh shell
+echo *****************************************************************
+echo * last thing to do is source the .zshrc to get things going
+echo * make sure we are using zsh shell
+echo *****************************************************************
 cd ~
 sudo apt install zsh -y
 chsh -s /bin/zsh
 
+echo *****************************************************************
+echo * echo export path to .zshrc
+echo *****************************************************************
 echo "export PATH=$PATH:~/bin:/opt/nvim-linux64/bin:~/bin/gitCmd" >> ~/.zshrc
