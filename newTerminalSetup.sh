@@ -3,10 +3,8 @@ echo '* you will have to create the bin directory and clone bin.git manually'
 echo '* setup new linux install'
 echo '* git clone https://github.com/DatuPuti/bin.git'
 echo '******************************************************************'
-
 echo ' '
 echo ' '
-
 echo '******************************************************************'
 echo '** clone gitCmd '
 echo '******************************************************************'
@@ -55,11 +53,11 @@ gem install colorls
 echo '******************************************************************'
 echo '** install commandline tools '
 echo '******************************************************************'
-sudo apt install stow -y
 brew install thefuck
+sudo apt install stow -y
 sudo apt install zoxide -y
 sudo apt ripgrep -y
-sudo apt install tmux
+sudo apt install tmux -y
 sudo apt bat -y
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
