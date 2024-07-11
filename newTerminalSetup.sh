@@ -13,6 +13,14 @@ git clone https://github.com/DatuPuti/gitCmd.git
 export PATH=$PATH:~/bin/gitCmd
 
 echo '******************************************************************'
+echo '** first thing to do is install zsh'
+echo '** make sure we set zsh as the new default shell'
+echo '******************************************************************'
+cd ~
+sudo apt install zsh -y
+chsh -s /bin/zsh
+
+echo '******************************************************************'
 echo '* install homebrew'
 echo '******************************************************************'
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
@@ -22,6 +30,8 @@ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 echo '******************************************************************'
 echo '** install neovim'
 echo '******************************************************************'
+cd ~/Downloads
+rm -rf nvim-linux64.tar.gz
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
@@ -46,9 +56,17 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 echo '******************************************************************'
+echo '** install ruby for colorls'
 echo '** install colorls using ruby gem'
 echo '******************************************************************'
-gem install colorls
+sudo apt install ruby-full -y
+echo 'export PATH="$PATH:$HOME/.rbenv/bin' >> .zshrc
+echo 'export PATH="$PATH:$HOME/.rbenv/bin' >> .bashrc
+echo 'eval "$(rbenv init -)"' >> .zshrc
+echo 'eval "$(rbenv init -)"' >> .bashrc
+export PATH=$PATH:$HOME/.rbenv/bin
+eval "$(rbenv init -)"
+sudo gem install colorls
 
 echo '******************************************************************'
 echo '** install commandline tools '
@@ -68,23 +86,16 @@ echo '** sudo apt remove universal-ctags'
 echo '** sudo apt install universal-ctags'
 echo '** install/remove exuberant-ctags'
 echo '******************************************************************'
+sudo apt remove universal-ctags -y
 sudo apt remove exuberant-ctags -y
 sudo apt install exuberant-ctags -y
-
-echo '******************************************************************'
-echo '** last thing to do is source the .zshrc to get things going'
-echo '** make sure we are using zsh shell'
-echo '******************************************************************'
-cd ~
-sudo apt install zsh -y
-chsh -s /bin/zsh
 
 echo '******************************************************************'
 echo '** clone the configs from github'
 echo '******************************************************************'
 cd ~
 mkdir dotfileBackup
-mv -Rv ~/.config/nvm dotfileBackup
+mv ~/.config/nvm dotfileBackup
 mv .bashrc dotfileBackup
 mv .p10k.zsh dotfileBackup
 mv .tmux.conf dotfileBackup
@@ -92,6 +103,15 @@ mv .zshrc dotfileBackup
 git clone https://github.com/DatuPuti/.dotfiles.git
 cd .dotfiles
 stow --target=/home/$USER .
+rm -rf ~/pull_request_template.md
+
+echo '******************************************************************'
+echo '** last thing to do is source the .zshrc to get things going'
+echo '** make sure we are using zsh shell'
+echo '******************************************************************'
+cd ~
+source .zshrc
+
 
 echo '******************************************************************'
 echo '** newTerminalSetup.sh - end'

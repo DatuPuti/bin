@@ -13,3 +13,4 @@ Install Steps:
 
     chmod ug+x ~/bin/newTerminalSetup.sh 
     ~/bin/newTerminalSetup.sh
+# bin
