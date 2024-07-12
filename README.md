@@ -11,6 +11,6 @@ Install Steps:
 2) from the user home dir or cd to the bin dir, 
    run the script to download required apps and scripts
 
-    chmod ug+x ~/bin/newTerminalSetup.sh 
+    chmod ug+x ~/bin/newTerminalSetup.sh <br/>
     ~/bin/newTerminalSetup.sh
 # bin

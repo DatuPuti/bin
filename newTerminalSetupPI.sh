@@ -21,28 +21,6 @@ sudo apt install zsh -y
 chsh -s /bin/zsh
 
 echo '******************************************************************'
-echo '* install homebrew'
-echo '******************************************************************'
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
-
-echo '******************************************************************'
-echo '** install neovim'
-echo '******************************************************************'
-cd ~/Downloads
-#rm -rf nvim-linux64.tar.gz
-FILE=./nvim-linux64.tar.gz
-if [[ ! -f "$FILE" ]]; then
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-fi
-sudo rm -rf /opt/nvim
-sudo tar -C /opt -xzf nvim-linux64.tar.gz
-# add neovim to path for instant use
-# if using the .dotfiles repository then the .zshrc will have the path set
-export PATH="$PATH:/opt/nvim-linux64/bin"
-
-echo '******************************************************************'
 echo '** get desired nerd fonts - install manually'
 echo '******************************************************************'
 cd ~/Downloads
@@ -76,6 +54,19 @@ echo 'eval "$(rbenv init -)"' >> .bashrc
 export PATH=$PATH:$HOME/.rbenv/bin
 eval "$(rbenv init -)"
 sudo gem install colorls
+
+echo '******************************************************************'
+echo '* install homebrew'
+echo '******************************************************************'
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" 
+echo 'export PATH="$PATH:$HOME/.linuxbrew/bin"' >> .zshrc
+echo 'export PATH="$PATH:$HOME/.linuxbrew/bin"' >> .bashrc
+export PATH="$PATH:$HOME/.linuxbrew/bin"
+
+echo '******************************************************************'
+echo '** install neovim'
+echo '******************************************************************'
+sudo apt install neovim -y
 
 echo '******************************************************************'
 echo '** install commandline tools '
