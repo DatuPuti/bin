@@ -13,25 +13,14 @@ git clone https://github.com/DatuPuti/gitCmd.git
 export PATH=$PATH:~/bin/gitCmd
 
 echo '******************************************************************'
-echo '** first thing to do is install zsh'
-echo '** make sure we set zsh as the new default shell'
-echo '******************************************************************'
-cd ~
-sudo apt install zsh -y
-chsh -s /bin/zsh
-
-echo '******************************************************************'
 echo '** get desired nerd fonts - install manually'
 echo '******************************************************************'
 cd ~/Downloads
-#rm -rf Hack.zip
-#rm -rf JetBrainsMono.zip
-FILE=./Hack.zip
-if [[ ! -f "$FILE" ]]; then 
+sudo apt install font-manager -y
+if [ ! -f ~/Downloads/Hack.zip ]; then 
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
 fi
-FILE=./Hack.zip
-if [[ ! -f "$FILE" ]]; then 
+if [ ! -f ~/Downloads/JetBrainsMono.zip ]; then 
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
 fi
 
@@ -58,7 +47,7 @@ sudo gem install colorls
 echo '******************************************************************'
 echo '* install homebrew'
 echo '******************************************************************'
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" 
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" 
 echo 'export PATH="$PATH:$HOME/.linuxbrew/bin"' >> .zshrc
 echo 'export PATH="$PATH:$HOME/.linuxbrew/bin"' >> .bashrc
 export PATH="$PATH:$HOME/.linuxbrew/bin"
@@ -102,8 +91,19 @@ mv .tmux.conf dotfileBackup
 mv .zshrc dotfileBackup
 git clone https://github.com/DatuPuti/.dotfiles.git
 cd .dotfiles
+rm -rf .config/nvim/lua
+rm -rf .config/nvim/init.lua
+rm -rf .config/nvim/lazy-lock.json
 stow --target=/home/$USER .
 rm -rf ~/pull_request_template.md
+
+echo '******************************************************************'
+echo '** first thing to do is install zsh'
+echo '** make sure we set zsh as the new default shell'
+echo '******************************************************************'
+cd ~
+sudo apt install zsh -y
+#chsh -s /bin/zsh
 
 echo '******************************************************************'
 echo '** last thing to do is source the .zshrc to get things going'

@@ -13,4 +13,7 @@ Install Steps:
 
     chmod ug+x ~/bin/newTerminalSetup.sh <br/>
     ~/bin/newTerminalSetup.sh
+    </br>
+    </br>
+    ** If you are installing on a Raspberry Pi run script newTerminalSetupPi.sh or you will experience install errors
 # bin
