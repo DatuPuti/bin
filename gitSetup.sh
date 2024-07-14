@@ -1,7 +1,7 @@
+git config --global credential.helper store
 git config --global user.name "DatuPuti"
 git config --global user.email "tborland@thomasborland.ca"
 git config --global core.editor "nvim"
-git config --global credential.helper store
 
 ## create new repository on the commandline
 #echo "# bin" >> README.md
