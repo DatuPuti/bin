@@ -60,7 +60,8 @@ sudo apt install neovim -y
 echo '******************************************************************'
 echo '** install commandline tools '
 echo '******************************************************************'
-brew install thefuck
+#brew install thefuck
+sudo apt install thefuck -y
 sudo apt install stow -y
 sudo apt install zoxide -y
 sudo apt ripgrep -y

@@ -96,7 +96,6 @@ echo '** sudo apt install universal-ctags'
 echo '** install/remove exuberant-ctags'
 echo '******************************************************************'
 sudo apt remove universal-ctags -y
-sudo apt remove exuberant-ctags -y
 sudo apt install exuberant-ctags -y
 
 echo '******************************************************************'
@@ -110,6 +109,12 @@ mv .p10k.zsh dotfileBackup
 mv .tmux.conf dotfileBackup
 mv .zshrc dotfileBackup
 git clone https://github.com/DatuPuti/.dotfiles.git
+
+echo '******************************************************************'
+echo '** git clone tmux plugin manager '
+echo '******************************************************************'
+git clone https://github.com/tmux-plugins/tpm ~/.dotfiles/.tmux/plugins/tpm
+
 cd .dotfiles
 stow --target=/home/$USER .
 rm -rf ~/pull_request_template.md
