@@ -46,14 +46,7 @@ echo '******************************************************************'
 echo '** get desired nerd fonts - install manually'
 echo '******************************************************************'
 cd ~/Downloads
-#rm -rf Hack.zip
-#rm -rf JetBrainsMono.zip
-FILE=./Hack.zip
-if [[ ! -f "$FILE" ]]; then 
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
-fi
-FILE=./Hack.zip
-if [[ ! -f "$FILE" ]]; then 
+if [ ! -f ~/Downloads/JetBrainsMono.zip ]; then 
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
 fi
 
@@ -83,9 +76,11 @@ echo '******************************************************************'
 brew install thefuck
 sudo apt install stow -y
 sudo apt install zoxide -y
-sudo apt ripgrep -y
+sudo apt install ripgrep -y
 sudo apt install tmux -y
-sudo apt bat -y
+sudo apt install bat -y
+sudo apt install zsh-syntax-highlighting -y
+sudo apt install font-manager -y
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
@@ -109,15 +104,14 @@ mv .p10k.zsh dotfileBackup
 mv .tmux.conf dotfileBackup
 mv .zshrc dotfileBackup
 git clone https://github.com/DatuPuti/.dotfiles.git
+cd .dotfiles
+stow --target=/home/$USER .
+rm -rf ~/pull_request_template.md
 
 echo '******************************************************************'
 echo '** git clone tmux plugin manager '
 echo '******************************************************************'
-git clone https://github.com/tmux-plugins/tpm ~/.dotfiles/.tmux/plugins/tpm
-
-cd .dotfiles
-stow --target=/home/$USER .
-rm -rf ~/pull_request_template.md
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo '******************************************************************'
 echo '** last thing to do is source the .zshrc to get things going'
@@ -125,7 +119,6 @@ echo '** make sure we are using zsh shell'
 echo '******************************************************************'
 cd ~
 source .zshrc
-
 
 echo '******************************************************************'
 echo '** newTerminalSetup.sh - end'

@@ -16,10 +16,6 @@ echo '******************************************************************'
 echo '** get desired nerd fonts - install manually'
 echo '******************************************************************'
 cd ~/Downloads
-sudo apt install font-manager -y
-if [ ! -f ~/Downloads/Hack.zip ]; then 
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
-fi
 if [ ! -f ~/Downloads/JetBrainsMono.zip ]; then 
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
 fi
@@ -55,7 +51,9 @@ export PATH="$PATH:$HOME/.linuxbrew/bin"
 echo '******************************************************************'
 echo '** install neovim'
 echo '******************************************************************'
-sudo apt install neovim -y
+sudo apt install snapd -y
+sudo snap install snapd 
+sudo snap install neovim
 
 echo '******************************************************************'
 echo '** install commandline tools '
@@ -64,9 +62,11 @@ echo '******************************************************************'
 sudo apt install thefuck -y
 sudo apt install stow -y
 sudo apt install zoxide -y
-sudo apt ripgrep -y
+sudo apt install ripgrep -y
 sudo apt install tmux -y
-sudo apt bat -y
+sudo apt install bat -y
+sudo apt install zsh-syntax-highlighting -y
+sudo apt install font-manager -y
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
@@ -77,7 +77,6 @@ echo '** sudo apt install universal-ctags'
 echo '** install/remove exuberant-ctags'
 echo '******************************************************************'
 sudo apt remove universal-ctags -y
-sudo apt remove exuberant-ctags -y
 sudo apt install exuberant-ctags -y
 
 echo '******************************************************************'
@@ -99,6 +98,11 @@ stow --target=/home/$USER .
 rm -rf ~/pull_request_template.md
 
 echo '******************************************************************'
+echo '** git clone tmux plugin manager '
+echo '******************************************************************'
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+echo '******************************************************************'
 echo '** first thing to do is install zsh'
 echo '** make sure we set zsh as the new default shell'
 echo '******************************************************************'
@@ -112,7 +116,6 @@ echo '** make sure we are using zsh shell'
 echo '******************************************************************'
 cd ~
 source .zshrc
-
 
 echo '******************************************************************'
 echo '** newTerminalSetup.sh - end'
