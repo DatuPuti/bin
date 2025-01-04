@@ -23,6 +23,7 @@ chsh -s /bin/zsh
 echo '******************************************************************'
 echo '* install homebrew'
 echo '******************************************************************'
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
@@ -48,6 +49,9 @@ echo '******************************************************************'
 cd ~/Downloads
 if [ ! -f ~/Downloads/JetBrainsMono.zip ]; then 
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+fi
+if [ ! -f ~/Downloads/VictorMono.zip ]; then 
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/VictorMono.zip
 fi
 
 echo '******************************************************************'
