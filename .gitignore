@@ -1,5 +1,6 @@
 gitCmd/
 binbin/
+gitSetup.sh
 aicursor
 dotnet-install.sh
 jbtbox
